@@ -78,8 +78,8 @@ public class FileHandlingForDMV {
             e.printStackTrace();
         }
 
-        validLines.stream().forEach(System.out::println);
-//        invalidLines.stream().forEach(System.out::println);
+//        validLines.stream().forEach(System.out::println);
+        invalidLines.stream().forEach(System.out::println);
 
         try {
             in.close();
