@@ -5,6 +5,26 @@ public class SwitchExample {
         foo();
 
         foo1();
+
+        String string = foo2();
+        System.out.println(string);
+    }
+
+    private static String foo2() {
+        int month = 14;
+
+        switch (month) {
+            case 1: case 2: case 3: case 11: case 12:
+                return "Winter";
+            case 4: case 5:
+                return "Spring";
+            case 6: case 7: case 8:
+                return "Summer";
+            case 9: case 10:
+                return "Fall";
+            default:
+                return "Not found";
+        }
     }
 
     private static void foo1() {
