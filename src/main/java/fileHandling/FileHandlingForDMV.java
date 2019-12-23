@@ -1,12 +1,13 @@
 package fileHandling;
 
-import javafx.application.Application;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileHandlingForDMV {
     public static void main(String[] args) {
@@ -29,11 +30,6 @@ public class FileHandlingForDMV {
         List<String> validLines = new ArrayList<>();
         List<String> invalidLines = new ArrayList<>();
 
-//        FileInputStream fis = new FileInputStream("test.txt");
-//        InputStreamReader isr = new InputStreamReader(fis, "UTF8");
-//        InputStreamReader defaultReader = new InputStreamReader(fis);
-//        String defaultEncoding = defaultReader.getEncoding();
-
         FileInputStream in1 = null;
         try {
             in1 = new FileInputStream(file.getAbsoluteFile());
@@ -49,7 +45,7 @@ public class FileHandlingForDMV {
         }
 
 
-        System.out.println("##########################" + in.getEncoding());
+//        System.out.println("##########################" + in.getEncoding());
 
         try (BufferedReader br = new BufferedReader(in)) {
 //        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file.getAbsoluteFile())))) {
@@ -79,7 +75,11 @@ public class FileHandlingForDMV {
         }
 
 //        validLines.stream().forEach(System.out::println);
-        invalidLines.stream().forEach(System.out::println);
+//        invalidLines.forEach(System.out::println);
+
+
+//        List<String> jTypes = new ArrayList<>();
+//        validLines.
 
         try {
             in.close();
@@ -93,5 +93,13 @@ public class FileHandlingForDMV {
             e.printStackTrace();
         }
 
+        validLines.stream().forEach(a -> {
+            Pattern pattern = Pattern.compile("[J]\\s{2}\\d{12}.{90}");
+            Matcher matcher = pattern.matcher(a);
+
+            while (matcher.find()) {
+                System.out.println(matcher.group());
+            }
+        });
     }
 }
