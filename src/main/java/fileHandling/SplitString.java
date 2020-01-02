@@ -18,7 +18,7 @@ public class SplitString {
         Matcher matcher = pattern.matcher(string);
 
         while (matcher.find()) {
-            System.out.println(matcher.group());
+            System.out.println(string.substring(56,105) + matcher.group());
         }
     }
 }
